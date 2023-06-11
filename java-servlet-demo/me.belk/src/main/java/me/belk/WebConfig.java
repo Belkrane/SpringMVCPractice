@@ -2,6 +2,7 @@ package me.belk;
 
 @Configuraion
 @ComponentScan
+@EnableWebMvc
 public class WebConfig {
 
     @Bean
