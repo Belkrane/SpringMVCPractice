@@ -3,12 +3,10 @@ package me.belk;
 @Configuraion
 @ComponentScan
 @EnableWebMvc
-public class WebConfig {
+public class WebConfig implements WebMvcConfigurer{
 
-    @Bean
-    public InternalResourceViewResolver viewResolver(){
-        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setPrefix("/WEB-INF/");
-        viewResolver.setSuffix(".jsp");
+    @Override
+    public void configureViewResolvers(ViewResolverRegistry registry){
+        registry.jsp("/WEB-INF/", ".jsp");
     }
 }
