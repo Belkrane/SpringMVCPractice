@@ -18,7 +18,7 @@ public class SampleController {
     //afterCompletion -> 뷰 랜더링 후처리
 
     @GetMapping("/hello")
-    public String hello(@RequestParam("name") Person person){
+    public String hello(@RequestParam("id") Person person){
         return "hello " + person.getName();
     }
 }
