@@ -57,4 +57,10 @@ public class SampleControllerTest {
                 .andExpect(content().string(Matchers.containsString("Hello mobile")))
                 .andExpect(header().exists(HttpHeaders.CACHE_CONTROL));
     }
+
+    @Test
+    public void stringMesasge() throws Exception {
+        
+    }
+
 }
