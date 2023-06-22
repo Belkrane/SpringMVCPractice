@@ -1,5 +1,6 @@
 package me.belk.demobootweb;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -26,8 +28,11 @@ public class SampleControllerTest {
     @Autowired
     PersonRepository personRepository;
 
+    @Autowired
+    ObjectMapper objectMapper;
+
     @Test
-    public void hello() throws Exception {
+    void hello() throws Exception {
         Person person = new Person();
         person.setName("belk");
 
@@ -40,7 +45,7 @@ public class SampleControllerTest {
     }
 
     @Test
-    public void helloStatic() throws Exception {
+    void helloStatic() throws Exception {
         this.mockMvc.perform(get("/index.html"))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -49,7 +54,7 @@ public class SampleControllerTest {
 
 
     @Test
-    public void helloMobile() throws Exception {
+    void helloMobile() throws Exception {
         this.mockMvc.perform(get("/mobile/index.html"))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -58,7 +63,7 @@ public class SampleControllerTest {
     }
 
     @Test
-    public void stringMesasge() throws Exception {
+    void stringMesasge() throws Exception {
         this.mockMvc.perform(get("/message")
                 .content("hello"))
                 .andDo(print())
@@ -66,4 +71,19 @@ public class SampleControllerTest {
                 .andExpect(content().string("hello"));
     }
 
+    @Test
+    void jsonMessage() throws Exception {
+        Person person = new Person();
+        person.setId(2019l);
+        person.setName("belk");
+
+        String jsonString = objectMapper.writeValueAsString(person);
+
+        this.mockMvc.perform(get("/jsonMessage")
+                        .contentType(MediaType.APPLICATION_JSON_UTF8)
+                        .accept(MediaType.APPLICATION_JSON_UTF8)
+                        .content(jsonString))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
 }
