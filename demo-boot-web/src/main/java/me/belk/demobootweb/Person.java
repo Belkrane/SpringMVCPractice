@@ -4,7 +4,9 @@ package me.belk.demobootweb;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 @Entity
 public class Person {
     @Id @GeneratedValue
