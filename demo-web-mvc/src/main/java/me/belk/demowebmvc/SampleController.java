@@ -10,9 +10,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(method = RequestMethod.GET)
 public class SampleController {
 
-    @RequestMapping("/hello")
+    @RequestMapping("/hello/**")
     @ResponseBody
     public String hello(){
         return "hello";
     }
+
+    //URI 패턴으로 연결하는 방법
+    //1. 일치하는 문자열로 맵핑
+    //2. 여러개의 문자열로 맵핑
+    //3. 특정 패턴으로 맵핑
 }

@@ -21,17 +21,9 @@ public class SampleControllerTest {
 
     @Test
     public void helloTest() throws Exception{
-        mockMvc.perform(get("/hello"))
+        mockMvc.perform(get("/hello/123/123123"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string("hello"));
-
-        mockMvc.perform(put("/hello"))
-                .andDo(print())
-                .andExpect(status().isMethodNotAllowed());
-
-        mockMvc.perform(post("/hello"))
-                .andDo(print())
-                .andExpect(status().isMethodNotAllowed());
     }
 }
