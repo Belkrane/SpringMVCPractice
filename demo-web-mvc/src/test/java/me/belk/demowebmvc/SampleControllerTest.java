@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -21,9 +22,9 @@ public class SampleControllerTest {
 
     @Test
     public void helloTest() throws Exception{
-        mockMvc.perform(get("/hello/123/123123"))
+        mockMvc.perform(get("/hello/belk"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string("hello"));
+                .andExpect(content().string("hello belk"));
     }
 }
