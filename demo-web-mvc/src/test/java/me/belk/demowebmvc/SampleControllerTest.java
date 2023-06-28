@@ -23,7 +23,8 @@ public class SampleControllerTest {
     @Test
     public void helloTest() throws Exception{
         mockMvc.perform(get("/hello")
-                        .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        /*.accept(MediaType.APPLICATION_JSON)*/)
                 .andDo(print())
                 .andExpect(status().isOk());
     }
