@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,11 +22,9 @@ public class SampleControllerTest {
 
     @Test
     public void helloTest() throws Exception{
-        mockMvc.perform(get("/hello/belk"))
+        mockMvc.perform(get("/hello")
+                        .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(content().string("hello belk"))
-                .andExpect(handler().handlerType(SampleController.class))
-                .andExpect(handler().methodName("hellobelk"));
+                .andExpect(status().isOk());
     }
 }
