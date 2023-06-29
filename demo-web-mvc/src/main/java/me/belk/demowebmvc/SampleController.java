@@ -1,5 +1,6 @@
 package me.belk.demowebmvc;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -7,10 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class SampleController {
 
-    @RequestMapping(value = "/hello",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.TEXT_PLAIN_VALUE
-    )
+    @RequestMapping(value = "/hello", headers = HttpHeaders.AUTHORIZATION + "=" + "111", params = "name=belk")
     @ResponseBody
     public String hello(){
         return "hello belk";
@@ -29,10 +27,18 @@ public class SampleController {
          - consumes option에 해당 타입을 정의하면 된다.
          - Content type이 맞지 않을 경우에는 415 Not Supported Media Type
         2. 어떠한 응답을 원한다를 맵핑할 수 있음
-          - accpet header에 해당 타입을 정의하면 된다.
+          - produces option에 accpet header에 해당 타입을 정의하면 된다.
           - Accept Header가 맞지 않는 경우에는 406 Not Supported
           - 보내는쪽에서 Accept Header를 정의하지 않는다면 아무 응답이나 받기 때문에 정상처리 됨
           
           * 둘 다 클래스 단위로도 설정할 수 있음
+     */
+
+    /*
+        임의의 HTTP 요청 헤더 값이 있는지, 특정한 헤더 값이 있는지
+        headers option 을 사용해서, 특정 헤더값이 있는 경우에만 동작하도록 설정
+        ! 이라는 기호를 통해서 특정 헤더가 없어야되는 경우도 체크할 수 있음
+        "=" + "111" 등 특정 헤더값이 들어오는 경우에도 처리 할 수 있음
+        헤더 뿐만이 아니라 param도 같은 방식으로 처리할 수 있음
      */
 }
