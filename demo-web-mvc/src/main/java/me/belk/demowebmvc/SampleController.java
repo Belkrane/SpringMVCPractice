@@ -8,10 +8,17 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class SampleController {
 
-    @RequestMapping(value = "/hello", headers = HttpHeaders.AUTHORIZATION + "=" + "111", params = "name=belk")
+    @GetMapping(value = "/hello", headers = HttpHeaders.AUTHORIZATION + "=" + "111", params = "name=belk")
     @ResponseBody
     public String hello(){
         return "hello belk";
+    }
+
+
+    @PostMapping("/hello")
+    @ResponseBody
+    public String helloPost(){
+        return "hello";
     }
 
     /*
@@ -40,5 +47,12 @@ public class SampleController {
         ! 이라는 기호를 통해서 특정 헤더가 없어야되는 경우도 체크할 수 있음
         "=" + "111" 등 특정 헤더값이 들어오는 경우에도 처리 할 수 있음
         헤더 뿐만이 아니라 param도 같은 방식으로 처리할 수 있음
+     */
+
+    /*
+        HTTP method HEAD, OPTIONS
+        HEAD 요청이 오면 응답 BODY를 빼고 HEAD 정보만(BODY를 주면 안됨) 준다. -> Spring 프레임웍이 자동으로 그렇게 처리해주기 때문에
+        따로 핸들러를 그렇게 만들 필요는 없다.
+        OPTIONS 는 서버 또는 리소스가 제공하는 기능을 확인 Allow라는 응답 헤더에 제공하는 METHOD를 응답한다.
      */
 }
