@@ -8,6 +8,21 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class SampleController {
 
+    @RequestMapping(method = RequestMethod.GET, value = "/hello")
+    public String getHello(){
+        return "Hello GET Reqeust";
+    }
+
+    @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST}, value="/multipleHello")
+    public String multipleHello(){
+        return "Hello Multiple Request method";
+    }
+
+    @PostMapping(value="/hello")
+    public String postHello(){
+        return "Hello POST Request";
+    }
+
     @GetMapping(value = "/hello", headers = HttpHeaders.AUTHORIZATION + "=" + "111", params = "name=belk")
     @ResponseBody
     public String hello(){
