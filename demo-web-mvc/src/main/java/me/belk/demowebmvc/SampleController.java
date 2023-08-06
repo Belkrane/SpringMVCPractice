@@ -37,6 +37,7 @@ public class SampleController {
     }
 
     /*
+      https://docs.spring.io/spring-framework/docs/3.2.16.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-uri-templates
       URI 패턴으로 연결하는 방법
       1.일치하는 문자열로 맵핑
       2.여러개의 문자열로 맵핑
